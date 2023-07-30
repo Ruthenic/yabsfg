@@ -4,6 +4,7 @@ from atproto import CAR, AtUri
 from atproto.xrpc_client import models
 from atproto.xrpc_client.models import get_or_create, ids, is_record_type
 from datetime import datetime
+from dateutil import parser
 import typing, sqlite3, config
 
 client = FirehoseSubscribeReposClient()
@@ -37,7 +38,7 @@ def on_message_handler(message: MessageFrame) -> None:
                     case ids.AppBskyFeedPost:
                         record = typing.cast(models.AppBskyFeedPost.Main, record)
                         if config.FILTER(record):
-                            cur.execute("INSERT INTO posts VALUES(?, ?, ?, ?)", (str(uri), str(op.cid), commit.repo, datetime.fromisoformat(record.createdAt).timestamp()))
+                            cur.execute("INSERT INTO posts VALUES(?, ?, ?, ?)", (str(uri), str(op.cid), commit.repo, parser.parse(record.createdAt).timestamp()))
                             print(f"new post just dropped. {record.text} - @{commit.repo} on {record.createdAt}")
                         continue
                     case _:
