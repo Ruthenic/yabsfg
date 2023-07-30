@@ -5,7 +5,7 @@ IDENTIFIER = "YOUR_USERNAME.bsky.social"
 PASSWORD = "YOUR_PASSWORD" # please use an app password and not your real one
 
 # feed metadata
-ID = "#FEED_ID"
+ID = "FEED_ID"
 NAME = "Example Feed Here"
 DESCRIPTION = "Example feed made with YABSFG"
 

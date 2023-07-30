@@ -1,8 +1,8 @@
 import config
-
 from atproto import Client, AtUri
-xrpc_client = Client()
-xrpc_client.login(config.IDENTIFIER, config.PASSWORD)
+
+client = Client()
+client.login(config.IDENTIFIER, config.PASSWORD)
 
 from fastapi import FastAPI, HTTPException
 import sqlite3
@@ -28,13 +28,14 @@ async def get_did_doc():
 @app.get("/xrpc/app.bsky.feed.getFeedSkeleton")
 async def get_feed_skeleton(feed: str, limit: int):
     uri = AtUri.from_str(feed)
-    if str(uri.hostname) != config.FEED_DID:
+    print (uri.pathname)
+    if str(uri.hostname) != config.FEED_DID and str(uri.hostname) != client.me.did: # type: ignore
         raise HTTPException(status_code=404, detail="fix ur client (requested with incorrect DID)")
     
-    if "app.bsky.feed.generator" not in str(uri.pathname):
+    if "app.bsky.feed.generator" not in str(uri.pathname).split("/")[1]:
         raise HTTPException(status_code=404, detail="fix ur client (did not request app.bsky.feed.generator)")
     
-    if str(uri.hash) != config.ID:
+    if str(uri.pathname).split("/")[2] != config.ID:
         raise HTTPException(status_code=404, detail="fix ur client (requested feed does not exist)")
 
     cur = dbconn.cursor()
