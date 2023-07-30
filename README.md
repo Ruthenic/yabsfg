@@ -11,3 +11,11 @@ if you want something likely to actually work use
 
 - [x] basic feed functionality
 - [ ] pagination(?)
+
+## Feeds hosted with this
+
+(if For Some Reason you host a feed using this let me know/PR and I'll add it)
+
+- [Fandoms I Like](https://bsky.app/profile/did:plc:hrqwngkxqcxffdwazjgdcmfk/feed/fandoms),
+  my feed with just a bunch of regex for pseudo-detecting when someone talks
+  about a fandom we like
