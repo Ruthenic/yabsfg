@@ -10,7 +10,7 @@ def fandom(record: models.AppBskyFeedPost.Main) -> bool:
         return True
     
     # hellaverse specific character matching
-    if search_with_flags(r'(stolas)|(blitz(o|ø|))|(fizzarolli)|(cash\s*buckzo)', record.text):
+    if search_with_flags(r'(stolas)|(blitz(o|ø))|(fizzarolli)|(cash\s*buckzo)', record.text):
         return True
     
     # murder drones
