@@ -1,3 +1,5 @@
+from typing import Optional
+import typing
 import config
 from atproto import Client, AtUri
 
@@ -26,7 +28,7 @@ async def get_did_doc():
     }
 
 @app.get("/xrpc/app.bsky.feed.getFeedSkeleton")
-async def get_feed_skeleton(feed: str, limit: int):
+async def get_feed_skeleton(feed: str, limit: int, cursor: Optional[str] = None):
     uri = AtUri.from_str(feed)
     print (uri.pathname)
     if str(uri.hostname) != config.FEED_DID and str(uri.hostname) != client.me.did: # type: ignore
@@ -40,6 +42,14 @@ async def get_feed_skeleton(feed: str, limit: int):
 
     cur = dbconn.cursor()
 
+    newcursor = 0
+
+    if cursor:
+        newcursor = int(cursor)
+
+    res = config.QUERY(cur, limit, newcursor)
+
     return {
-        "feed": config.QUERY(cur, limit)
+        "feed": res[0],
+        "cursor": str(res[1])
     }

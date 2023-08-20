@@ -10,7 +10,7 @@ if you want something likely to actually work use
 ## TODO
 
 - [x] basic feed functionality
-- [ ] pagination(?)
+- [x] pagination
 
 ## Feeds hosted with this
 
