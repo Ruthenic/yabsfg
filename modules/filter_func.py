@@ -4,6 +4,9 @@ import re
 def search_with_flags(regex: str, content: str) -> bool:
     return bool(re.search(regex, content, flags=re.IGNORECASE))
 
+def anything(_: models.AppBskyFeedPost.Main) -> bool:
+    return True
+
 def fandom(record: models.AppBskyFeedPost.Main) -> bool:
     # basic hellaverse matching
     if search_with_flags(r'(helluva\s*boss)|(hazbin\s*hotel)|(hellaverse)', record.text):

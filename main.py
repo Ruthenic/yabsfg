@@ -3,7 +3,7 @@ import typing
 import config
 from atproto import Client, AtUri
 
-client = Client()
+client = Client(base_url=config.BASE_URL)
 client.login(config.IDENTIFIER, config.PASSWORD)
 
 from fastapi import FastAPI, HTTPException

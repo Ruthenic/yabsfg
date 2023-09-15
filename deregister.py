@@ -3,7 +3,7 @@ from datetime import datetime
 
 from atproto import Client, models
 from atproto.xrpc_client.models import ids
-client = Client()
+client = Client(base_url=config.BASE_URL)
 client.login(config.IDENTIFIER, config.PASSWORD)
 
 response = client.com.atproto.repo.delete_record(models.ComAtprotoRepoDeleteRecord.Data(

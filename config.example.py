@@ -1,6 +1,8 @@
 from modules import filter_func, query
 
 # bsky info
+BASE_URL = None # manually set pds url, otherwise bsky.social
+FIREHOSE_URL = None # manually set pds/bgs url for firehose, otherwise bsky.social
 IDENTIFIER = "YOUR_USERNAME.bsky.social"
 PASSWORD = "YOUR_PASSWORD" # please use an app password and not your real one
 
