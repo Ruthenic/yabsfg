@@ -28,7 +28,7 @@ cur = dbconn.cursor()
 cur.execute("CREATE TABLE IF NOT EXISTS posts(uri, cid, repo, created_at)")
 
 def on_message_handler(message: MessageFrame) -> None:
-    print("recv event")
+    #print("recv event")
     commit = parse_subscribe_repos_message(message)
     if not isinstance(commit, models.ComAtprotoSyncSubscribeRepos.Commit):
         # is it possible to *not* have one of these? god knows, but the example does it so we do too
@@ -46,7 +46,7 @@ def on_message_handler(message: MessageFrame) -> None:
                 
                 record = get_or_create(car.blocks.get(op.cid), strict=False)
                 
-                print(record)
+                #print(record)
 
                 match record.py_type: # type: ignore | GO AWAY
                     case ids.AppBskyFeedPost:
